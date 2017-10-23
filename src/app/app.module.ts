@@ -19,6 +19,7 @@ import { SafeHtmlPipe } from './pipe/safe-html.pipe';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { PlayerListComponent } from './player-list/player-list.component';
+import { GameFilterPipe } from './pipe/game-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PlayerListComponent } from './player-list/player-list.component';
     FixtureComponent,
     PlayerReplacementComponent,
     SafeHtmlPipe,
-    PlayerListComponent
+    PlayerListComponent,
+    GameFilterPipe
   ],
   imports: [
     BrowserModule,

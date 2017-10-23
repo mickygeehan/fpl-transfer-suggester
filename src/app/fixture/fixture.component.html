@@ -1,4 +1,8 @@
 
+<div class="form-group">
+  <input type="text" [typeahead]="teamNames"  [(ngModel)]="teamName" class="form-control"  aria-describedby="emailHelp" placeholder="Enter team name...">                                    
+</div>
+
 <table class='table table-striped'>
   <thead>
     <tr>
@@ -12,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor='let item of fixtures'>
+    <tr *ngFor='let item of fixtures | gameFilter : teamName'>
       <td><span class='{{getDiffClass(item.team_h_difficulty)}}'>{{item.team_h_difficulty}}</span></td>
       <td>{{getTeamName(item.team_h)}}</td>
       <td> {{item.team_h_score}}</td>

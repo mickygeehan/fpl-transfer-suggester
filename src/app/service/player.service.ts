@@ -14,7 +14,8 @@ import { Fixture } from '../models/fixture';
 
 
 
-// TODO -
+// TODO - Create a store and put all functions into the store
+// For eg Team store and all function goes into that store
 // TESTS - Make sure getplayers works when it is false
 
 @Injectable()
@@ -244,6 +245,14 @@ export class PlayerService {
     for (const team of this.teams) {
       if (id === team.id) {
         return team.name;
+      }
+    }
+  }
+
+  getTeamId(input: string): number {
+    for (const team of this.teams) {
+      if (team.name.toLowerCase().indexOf(input.toLowerCase()) !== -1) {
+        return team.id;
       }
     }
   }
