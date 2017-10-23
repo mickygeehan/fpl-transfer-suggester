@@ -2,20 +2,24 @@
 <table class='table table-striped'>
   <thead>
     <tr>
+      <th></th>
       <th>Home</th>
       <th></th>
       <th></th>
       <th></th>      
-      <th>Away</th>      
+      <th>Away</th> 
+      <th></th>     
     </tr>
   </thead>
   <tbody>
     <tr *ngFor='let item of fixtures'>
+      <td><span class='{{getDiffClass(item.team_h_difficulty)}}'>{{item.team_h_difficulty}}</span></td>
       <td>{{getTeamName(item.team_h)}}</td>
       <td> {{item.team_h_score}}</td>
       <td>--</td>
       <td>{{item.team_a_score}}</td>
       <td>{{getTeamName(item.team_a)}}</td>
+      <td><span class='{{getDiffClass(item.team_a_difficulty)}}'>{{item.team_a_difficulty}}</span></td>
     </tr>
   </tbody>
 </table>

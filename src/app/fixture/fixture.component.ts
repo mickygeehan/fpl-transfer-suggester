@@ -21,4 +21,8 @@ export class FixtureComponent implements OnInit {
     return this.playerService.getTeamName(id);
   }
 
+  getDiffClass(diff: number): string {
+    return this.playerService.getDifficultyClass(diff);
+  }
+
 }
