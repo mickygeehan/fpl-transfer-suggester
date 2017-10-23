@@ -1,0 +1,86 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+
+<!-- <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">{{title}}</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink='' routerLinkActive='active'>Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink='/players/' routerLinkActive='active'>Players</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" routerLink='/fixtures/' routerLinkActive='active'>Players</a>
+        </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search team or player...">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav> -->
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink='' routerLinkActive='active' href="">FPL Transfer Suggester</a>
+    <div class="btn-group" dropdown>
+        <button style="cursor:pointer;" dropdownToggle type="button" class="btn dropdown-toggle">
+          Quick Links <span class="caret"></span>
+        </button>
+        <ul *dropdownMenu class="dropdown-menu" role="menu">
+          <li role="menuitem"><a class="nav-link" routerLink='' routerLinkActive='active'>Home</a></li> 
+          <li class="divider dropdown-divider"></li>           
+          <li role="menuitem"><a class="nav-link" routerLink='/players/' routerLinkActive='active'>Players</a></li>
+          <li class="divider dropdown-divider"></li>
+          <li role="menuitem"><a class="nav-link" routerLink='/fixtures/' routerLinkActive='active'>Fixtures</a></li>
+        </ul>
+      </div>
+    <!-- <div dropdown>
+
+    
+    <button dropdownToggle class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div  class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+          
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown link
+          </a>
+          <div *dropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div> -->
+  </nav>
+
+
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+  
+
+

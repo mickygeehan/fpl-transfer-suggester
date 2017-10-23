@@ -1,0 +1,21 @@
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Home</th>
+      <th></th>
+      <th></th>
+      <th></th>      
+      <th>Away</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let item of fixtures'>
+      <td>{{getTeamName(item.team_h)}}</td>
+      <td> {{item.team_h_score}}</td>
+      <td>--</td>
+      <td>{{item.team_a_score}}</td>
+      <td>{{getTeamName(item.team_a)}}</td>
+    </tr>
+  </tbody>
+</table>
