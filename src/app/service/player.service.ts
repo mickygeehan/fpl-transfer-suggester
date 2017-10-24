@@ -208,12 +208,12 @@ export class PlayerService {
     }
   }
 
-  getFixtures(): any {
+  getFixtures(): Fixture[] {
     if (this.fixtures) {
       return this.fixtures;
     } else {
       console.log('No fixtures mate');
-      return false;
+      return [];
     }
   }
 

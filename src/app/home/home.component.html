@@ -1,11 +1,13 @@
 <div class="container">
     <div class="jumbotron">
         <h2>Welcome to FPL Transfer Suggester 2.0</h2>
-        <p class="lead">The all new fpl transfer suggester with far more features. Click here to see what's changed!</p>
+        <p class="lead">The all new fpl transfer suggester with more features. Click <a routerLink='/new' routerLinkActive='active'>here</a> to see what's changed!</p>
     </div>
 
-  <h2>Your Team</h2>
+  <div class="container">
 
+  
+  <h2>Your Team</h2>
   <div class="row">
     <div class="col-sm-8">
         <input type='text' (keyup.enter)='myEvent(gamesInput)' style='width:300px;' [(ngModel)]='gamesInput' placeholder='Change fix difficulty range...'>  
@@ -43,7 +45,7 @@
 
     </tbody>
   </table>
-
+</div>
 </div>
 
 

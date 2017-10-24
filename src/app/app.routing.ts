@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { FixtureComponent } from './fixture/fixture.component';
 import { PlayerReplacementComponent } from './player-replacement/player-replacement.component';
 import { PlayerListComponent } from './player-list/player-list.component';
+import { WhatsNewComponent } from './whats-new/whats-new.component';
 
 
 
@@ -31,6 +32,10 @@ const appRoutes: Routes = [
     {
         path: 'playerdetail/:id',
         component: PlayerDetailComponent
+    },
+    {
+        path: 'new',
+        component: WhatsNewComponent
     }
 ];
 

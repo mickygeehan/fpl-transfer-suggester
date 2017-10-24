@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { PlayerService } from '../service/player.service';
 import { Player } from '../models/player';
+import { Fixture } from '../models/fixture';
+
 
 @Component({
   selector: 'app-fixture',
@@ -10,7 +12,7 @@ import { Player } from '../models/player';
 })
 export class FixtureComponent implements OnInit {
 
-  private fixtures: any[];
+  private fixtures: Fixture[];
   private teamNames: string[];
 
   constructor(private playerService: PlayerService) { }
@@ -27,5 +29,23 @@ export class FixtureComponent implements OnInit {
   getDiffClass(diff: number): string {
     return this.playerService.getDifficultyClass(diff);
   }
+
+  // getScorers(gameID: number): any {
+  //   let toReturn = '';
+  //   for (const game of this.fixtures) {
+  //     if (game.id === gameID) {
+  //       game.stats.forEach(element => {
+  //         if (element.goals_scored) {
+  //           if (element.goals_scored.h) {
+  //             element.goals_scored.h.forEach(scored => {
+  //               toReturn += scored.element + ', Goals - ' + scored.value + '<br>;';
+  //             });
+  //           }
+  //         }
+  //       });
+  //     }
+  //   }
+  //   return this.sanitizer.transform(toReturn);
+  // }
 
 }
