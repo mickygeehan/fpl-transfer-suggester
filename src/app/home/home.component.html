@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-sm-8">
         <input type='text' (keyup.enter)='myEvent(gamesInput)' style='width:300px;' [(ngModel)]='gamesInput' placeholder='Change fix difficulty range...'>  
-        <button class='btn btn-primary' type='submit' (click)='myEvent(gamesInput)'>Submit</button>
+        <button class='btn btn-primary' type='submit' (click)='myEvent(gamesInput)'>Change</button>
     </div>
   </div>
   <br />
@@ -40,7 +40,7 @@
                 <span class='{{i.class}}' tooltip='{{i.name}}'>{{i.diff}}</span>
               </div>
             </div>
-          </td>
+        </td>
       </tr>
 
     </tbody>

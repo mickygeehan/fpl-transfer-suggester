@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 // my imports
 import { PlayerService } from '../service/player.service';
@@ -13,18 +14,20 @@ import { FilterPipe } from '../pipe/filter.pipe';
 export class PlayerDetailComponent implements OnInit, OnDestroy {
 
   // variables
-  private req: any;
-  private players: Player[];
-  private teamNames: string[];
+  private routeSub: any;
+  private id: number;
+  private player: Player;
 
 
-  constructor(private playerService: PlayerService) { }
+
+  constructor(private route: ActivatedRoute, private playerService: PlayerService) { }
 
   ngOnInit() {
-    // Get the players
-    // if there's no players then call get players
-    this.players = this.playerService.getPlayers();
-    this.teamNames = this.playerService.getTeamNames();
+    this.routeSub = this.route.params.subscribe(params => {
+      this.id = Number.parseInt(params['id']);
+    });
+    this.player = this.playerService.getPlayer(this.id);
+
   }
 
   ngOnDestroy() {

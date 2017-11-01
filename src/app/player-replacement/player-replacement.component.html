@@ -23,7 +23,14 @@
                     </tr>
                     <tr>
                         <th>FDR</th>
-                        <td>{{player.fdr}}</td>
+                        <td>
+                                {{player.fdr}}
+                                  <div class='row'>
+                                    <div class='col-sm-1' *ngFor='let i of player.opponentsAndDiff'>
+                                      <span class='{{i.class}}' tooltip='{{i.name}}'>{{i.diff}}</span>
+                                    </div>
+                                  </div>
+                              </td>
                     </tr>
                     <!-- All except keepers -->
                     <tr *ngIf='player.element_type != 1'>
