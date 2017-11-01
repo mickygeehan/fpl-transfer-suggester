@@ -4,9 +4,11 @@
         <p class="lead">The all new fpl transfer suggester with more features. Click <a routerLink='/new' routerLinkActive='active'>here</a> to see what's changed!</p>
     </div>
 
-  <div class="container">
+  <div class="container" *ngIf='notLoggedIn'>
+    <p style="color:crimson;">Not logged in! Please log into the fantasy premier league & re open this extension...</p>
+  </div>
 
-  
+  <div class="container" *ngIf='!notLoggedIn'>
   <h2>Your Team</h2>
   <div class="row">
     <div class="col-sm-8">

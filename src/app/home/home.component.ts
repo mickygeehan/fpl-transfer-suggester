@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   // variables
   private req: any;
   private usersTeam: [Player];
+  private notLoggedIn: boolean = false;
 
   constructor(private playerService: PlayerService) { }
 
@@ -56,6 +57,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.getUserTeam();
       } else if (response === 403) {
         // set an error tag
+        this.notLoggedIn = true;
       } else {
         this.usersTeam = response as [Player];
       }

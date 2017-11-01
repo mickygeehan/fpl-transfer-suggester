@@ -32,6 +32,7 @@ export class PlayerService {
   private teams: Team[];
   private fixtures: Fixture[];
   private teamNames: string[] = [];
+  private totalMinutesPlayed: number;
 
   // Data for this class only
   private picks: [any];
@@ -153,52 +154,66 @@ export class PlayerService {
   }
 
 
-  /* GETUSERSTEAM(){}
-     This is called by the home component,
-     gets the users picks and gives us 15 players ID,
-     Then have to get the players info via that id
-   */
-  getUsersTeam(): any {
-    // make sure data is initialised
-    if (this.usersTeam) {
-      return Observable.of(this.usersTeam);
-    } else {
-      if (this.dataInitialised) {
-        return this.http.get(this.userTeamURL)
-        .map(response => {
-          this.minMinutesPlayed = (response['entry'].current_event * 90) - 100;
-          this.picks = response['picks'];
-          this.usersTeam = this.initialiseUsersTeamViaPicks();
-          return this.usersTeam;
-        })
-        .catch(this.handleError);
-      } else {
-        console.log('data hasnt been initialised');
+  // These fucntions below just return data to controllers
+  getTotalMinutesPlayed(): number {
+    return this.totalMinutesPlayed;
+  }
+
+  getOpponent(id: number): string {
+    for (const team of this.teams) {
+      if (team.id === id) {
+        return team.name;
       }
     }
   }
 
-  getReplacementPlayers(playerToReplace: Player): Player[] {
-    const toReturn: Player[] = [];
-    this.players.forEach(player => {
-      // check same position
-      if (player.element_type === playerToReplace.element_type) {
-        // check player has easier FDR
-        if (player.fdr < playerToReplace.fdr) {
-          // check players plays regularly
-          if (player.minutes >= this.minMinutesPlayed) {
-            toReturn.push(player);
-          }
-        }
-      }
-    });
-    return toReturn;
+  getDifficultyClass(diff: number): string {
+    // Todo change to switch statement
+    if (diff === 1) {
+      return 'difficulty-1';
+    } else if (diff === 2) {
+      return 'difficulty-2';
+    } else if (diff === 3) {
+      return 'difficulty-3';
+    } else if (diff === 4) {
+      return 'difficulty-4';
+    } else {
+      return 'difficulty-5';
+    }
   }
 
-  /* GETPLAYERS(){}
-    This function returns every player
-    Have to make sure data has been initialised otherwise we have to call the function again
-   */
+  getTeamId(input: string): number {
+    for (const team of this.teams) {
+      if (team.name.toLowerCase().indexOf(input.toLowerCase()) !== -1) {
+        return team.id;
+      }
+    }
+  }
+
+  getTeamName(id: number): string {
+    for (const team of this.teams) {
+      if (id === team.id) {
+        return team.name;
+      }
+    }
+  }
+
+  getTeamNames(): string[] {
+    return this.teamNames;
+  }
+
+  getDataInitialised(): boolean {
+    return this.dataInitialised;
+  }
+
+  getPlayerFixDiffCss(playerTeamCode: number) {
+    for (const team of this.teams) {
+      if (team.code === playerTeamCode) {
+        return team.fixDiffCss;
+      }
+    }
+  }
+
   getPlayers(): Player[] {
     if (this.players) {
       return this.players;
@@ -225,67 +240,48 @@ export class PlayerService {
     }
   }
 
-  getDataInitialised(): boolean {
-    return this.dataInitialised;
-  }
-
-  getPlayerFixDiffCss(playerTeamCode: number) {
-    for (const team of this.teams) {
-      if (team.code === playerTeamCode) {
-        return team.fixDiffCss;
+  getReplacementPlayers(playerToReplace: Player): Player[] {
+    const toReturn: Player[] = [];
+    this.players.forEach(player => {
+      // check same position
+      if (player.element_type === playerToReplace.element_type) {
+        // check player has easier FDR
+        if (player.fdr < playerToReplace.fdr) {
+          // check players plays regularly
+          if (player.minutes >= this.minMinutesPlayed) {
+            toReturn.push(player);
+          }
+        }
       }
-    }
+    });
+    return toReturn;
   }
 
-  getTeamNames(): string[] {
-    return this.teamNames;
-  }
-
-  getTeamName(id: number): string {
-    for (const team of this.teams) {
-      if (id === team.id) {
-        return team.name;
-      }
-    }
-  }
-
-  getTeamId(input: string): number {
-    for (const team of this.teams) {
-      if (team.name.toLowerCase().indexOf(input.toLowerCase()) !== -1) {
-        return team.id;
-      }
-    }
-  }
-
-  /* Functions
-  */
-
-  // Change to switch
-  getDifficultyClass(diff: number): string {
-    if (diff === 1) {
-      return 'difficulty-1';
-    } else if (diff === 2) {
-      return 'difficulty-2';
-    } else if (diff === 3) {
-      return 'difficulty-3';
-    } else if (diff === 4) {
-      return 'difficulty-4';
+    /* GETUSERSTEAM(){}
+     This is called by the home component,
+     gets the users picks and gives us 15 players ID,
+     Then have to get the players info via that id
+   */
+  getUsersTeam(): any {
+    // make sure data is initialised
+    if (this.usersTeam) {
+      return Observable.of(this.usersTeam);
     } else {
-      return 'difficulty-5';
-    }
-  }
-
-  getOpponent(id: number): string {
-    for (const team of this.teams) {
-      if (team.id === id) {
-        return team.name;
+      if (this.dataInitialised) {
+        return this.http.get(this.userTeamURL)
+        .map(response => {
+          this.minMinutesPlayed = (response['entry'].current_event * 90) - 100;
+          this.totalMinutesPlayed = response['entry'].current_event * 90;
+          this.picks = response['picks'];
+          this.usersTeam = this.initialiseUsersTeamViaPicks();
+          return this.usersTeam;
+        })
+        .catch(this.handleError);
+      } else {
+        console.log('data hasnt been initialised');
       }
     }
   }
-
-
-
-
 
 
   private initialiseUsersTeamViaPicks(): any[] {
@@ -301,9 +297,10 @@ export class PlayerService {
     return toReturn;
   }
 
-    private handleError(error: any, caught: any): any {
-      return Observable.of(error.status);
+  private handleError(error: any, caught: any): any {
+    return Observable.of(error.status);
   }
+
   }
 
 

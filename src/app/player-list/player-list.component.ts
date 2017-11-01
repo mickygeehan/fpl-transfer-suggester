@@ -13,12 +13,14 @@ export class PlayerListComponent implements OnInit {
 
   private players: Player[] = [];
   private teamNames: string[];
+  private totalMins: number;
 
   constructor(private playerService: PlayerService) { }
 
   ngOnInit() {
     this.players = this.playerService.getPlayers();
     this.teamNames = this.playerService.getTeamNames();
+    this.totalMins = this.playerService.getTotalMinutesPlayed();
   }
 
 }
